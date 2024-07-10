@@ -19,7 +19,7 @@ namespace Journey.Application.UseCases.Trips.Delete
 
             if (trip is null)
             {
-                throw new Exception.ExceptionsBase.NotFoundException(ResourceErrorMessages.TRIP_NOT_FOUND);
+                throw new NotFoundException(ResourceErrorMessages.TRIP_NOT_FOUND);
             }
 
             dbContext.Trips.Remove(trip);

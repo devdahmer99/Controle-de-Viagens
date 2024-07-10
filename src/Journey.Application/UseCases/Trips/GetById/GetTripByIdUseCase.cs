@@ -18,7 +18,7 @@ namespace Journey.Application.UseCases.Trips.GetById
 
             if (trip is null)
             {
-                throw new Exception.ExceptionsBase.NotFoundException(ResourceErrorMessages.TRIP_NOT_FOUND);
+                throw new ErrorOnValidationException(ResourceErrorMessages.TRIP_NOT_FOUND);
             }
 
             return new ResponseTripJson

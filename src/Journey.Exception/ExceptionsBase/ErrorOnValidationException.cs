@@ -7,10 +7,22 @@ using System.Threading.Tasks;
 
 namespace Journey.Exception.ExceptionsBase
 {
-    public class NotFoundException : JourneyException
+    public class ErrorOnValidationException : JourneyException
     {
-        public NotFoundException(string message) : base(message)
+        private readonly IList<string> _errors;
+
+        public ErrorOnValidationException(IList<string> messages) : base(string.Empty)
         {
+            _errors = messages;
+        }
+
+        public ErrorOnValidationException(string message) : base(message)
+        {
+        }
+
+        public override IList<string> GetErrorMessages()
+        {
+            return _errors;
         }
 
         public override HttpStatusCode GetStatusCode()
