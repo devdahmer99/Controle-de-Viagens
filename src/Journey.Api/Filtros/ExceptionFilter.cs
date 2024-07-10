@@ -13,25 +13,16 @@ namespace Journey.Api.Filtros
         {
             if (context.Exception is JourneyException)
             {
-                var journeException = (JourneyException)context.Exception;
-
-                var responseJson = new ResponseErrorsJson(journeException.GetErrorMessages());
-
-                context.HttpContext.Response.StatusCode = (int)journeException.GetStatusCode();
-
+                var journeyException = (JourneyException)context.Exception;
+                context.HttpContext.Response.StatusCode = (int)journeyException.GetStatusCode();
+                var responseJson = new ResponseErrorsJson(journeyException.GetErrorMessages());
                 context.Result = new NotFoundObjectResult(responseJson);
             }
             else
             {
                 context.HttpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
-
-                var error = new List<string>
-                {
-                    "Erro desconhecido"
-                };
-
-                var responseJson = new ResponseErrorsJson(error);
-                
+                var error = new List<string> {"Unknown errors"};
+                var responseJson = new ResponseErrorsJson(error);             
                 context.Result = new ObjectResult(responseJson);
             }
         }

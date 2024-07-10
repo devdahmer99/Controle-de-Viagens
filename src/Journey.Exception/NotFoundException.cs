@@ -1,20 +1,14 @@
 ﻿using Journey.Exception.ExceptionsBase;
 using System.Net;
+using System.Net.Http.Headers;
 
 namespace Journey.Exception
 {
-    public class NotFoundException : JourneyException
+    public class NotFoundException(string message) : JourneyException(message)
     {
-        public NotFoundException(string message) : base(message)
-        {
-        }
-
         public override IList<string> GetErrorMessages()
         {
-            var error = new List<string>
-                {
-                    Message
-                };
+              return [ Message ];
         }
 
         public override HttpStatusCode GetStatusCode()
