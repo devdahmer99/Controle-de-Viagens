@@ -1,12 +1,11 @@
-﻿namespace Journey.Communication.Responses
-{
-    public class ResponseErrorsJson
-    {
-        public IList<string> Errors { get; set; } = [];
+namespace Journey.Communication.Responses;
 
-        public ResponseErrorsJson(IList<string> errors) 
-        {
-            Errors = errors;
-        }
+public class ResponseErrorsJson
+{
+    public IList<string> Errors { get; set; } = [];
+
+    public ResponseErrorsJson(IList<string> errors)
+    {
+        Errors = errors;
     }
 }

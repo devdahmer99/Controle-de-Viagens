@@ -1,33 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Journey.Exception.ExceptionsBase
+namespace Journey.Exception.ExceptionsBase;
+
+public class ErrorOnValidationException(IList<string> errors) : JourneyException(string.Empty)
 {
-    public class ErrorOnValidationException : JourneyException
+    private readonly IList<string> _errors = errors;
+    
+    public override IList<string> GetErrorMessages()
     {
-        private readonly IList<string> _errors;
-
-        public ErrorOnValidationException(IList<string> messages) : base(string.Empty)
-        {
-            _errors = messages;
-        }
-
-        public ErrorOnValidationException(string message) : base(message)
-        {
-        }
-
-        public override IList<string> GetErrorMessages()
-        {
-            return _errors;
-        }
-
-        public override HttpStatusCode GetStatusCode()
-        {
-            return HttpStatusCode.BadRequest;
-        }
+        return _errors;
     }
+    public override HttpStatusCode GetStatusCode()
+    {
+        return HttpStatusCode.BadRequest;
+    }
+
 }
